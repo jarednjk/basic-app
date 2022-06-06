@@ -29,12 +29,10 @@ app.get('/create', (req,res)=>{
 })
 
 app.post('/create', async function(req,res){
-    let data = {
+    await axios.post(BASE_API_URL + "movie/create", {
         'title': req.body.title,
         'plot': req.body.plot,
-    }
-    console.log(data);
-    await axios.post(BASE_API_URL + "movie/create", data);
+    });
     res.redirect('/');
 })
 

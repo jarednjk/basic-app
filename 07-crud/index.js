@@ -26,14 +26,46 @@ app.get('/food_sightings/create', function(req,res){
     res.render('food_form');
 })
 
+// app.get('/food_sighting/edit/:food')
+
 app.post('/food_sightings/create', async function(req,res){
     let data = {
         'description': req.body.description,
-        'food': req.body.food.split(','),
+        'food': req.body.food,
         'datetime': req.body.datetime
     }
     await axios.post(BASE_API_URL + "sighting", data);
     res.redirect('/');
+})
+
+app.get('/food_sightings/edit/:food_sighting_id', async(req,res)=>{
+    let foodSightingId = req.params.food_sighting_id;
+    let response = await axios.get(BASE_API_URL + 'sighting/' + foodSightingId);
+    let foodSighting = response.data;
+    console.log(foodSighting.datetime);
+    res.render('edit_food_form', {
+        'description': foodSighting.description,
+        'food': foodSighting.food,
+        'datetime': foodSighting.datetime.slice(0,-1)
+    })
+})
+
+app.post('/food_sightings/edit/:food_sighting_id', async(req,res)=>{
+    let description = req.body.description;
+    let food = req.body.food.split(',');
+    let datetime = req.body.datetime;
+    let sightingId = req.params.food_sighting_id;
+
+    let payload = {
+        'description': description,
+        'food': food,
+        'datetime': datetime
+    }
+
+    let url = BASE_API_URL + 'sighting/' + sightingId;
+    await axios.put(url, payload);
+
+    res.redirect('/')
 })
 
 app.listen(3000,()=>{
