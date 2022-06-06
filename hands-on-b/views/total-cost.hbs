@@ -1,0 +1,25 @@
+{{#extends 'base'}}
+{{!-- {{#block "title"}}Buy Fruits{{/block}} --}}
+{{#block 'content'}}
+
+    <form method="POST">
+        <label>Fruits:</label>
+        <div>
+            <input type="checkbox" class="form-check-input" name="items" value="durian"/>
+            <label class="form-check-label">Durian ($15.00)<label>
+
+            <input type="checkbox" class="form-check-input" name="items" value="apple"/>
+            <label class="form-check-label">Apple ($3.00)<label>
+
+            <input type="checkbox" class="form-check-input" name="items" value="orange"/>
+            <label class="form-check-label">Orange ($6.00)<label>
+
+            <input type="checkbox" class="form-check-input" name="items" value="banana"/>
+            <label class="form-check-label">Banana ($4.00)<label>
+
+        </div>
+        <input type="submit" class="btn btn-primary mt-3" value="Submit"/>
+    </form>
+
+{{/block}}
+{{/extends}}
