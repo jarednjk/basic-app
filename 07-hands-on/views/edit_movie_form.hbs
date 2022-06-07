@@ -1,0 +1,22 @@
+{{#extends 'base'}}
+
+
+{{#block 'content'}}
+<form method="POST">
+    <div>
+        <label>Title</label>
+        <input type="text" name="title" class="form-control" value="{{title}}"/>
+    </div>
+    <div>
+        <label>Plot</label>
+        <input type="text" name="plot" class="form-control" 
+                placeholder="Enter food seperated by commas" value="{{plot}}"/>
+    </div>
+
+    <input type="Submit" value="Update movie" class="btn btn-primary mt-3"/>
+</form>
+{{/block}}
+
+
+
+{{/extends}}
