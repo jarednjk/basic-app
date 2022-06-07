@@ -28,7 +28,7 @@ app.get('/food_sightings/create', function(req,res){
 
 // app.get('/food_sighting/edit/:food')
 
-app.post('/food_sightings/create', async function(req,res){
+app.post('/food_sighting/create', async function(req,res){
     let data = {
         'description': req.body.description,
         'food': req.body.food,
@@ -38,7 +38,7 @@ app.post('/food_sightings/create', async function(req,res){
     res.redirect('/');
 })
 
-app.get('/food_sightings/edit/:food_sighting_id', async(req,res)=>{
+app.get('/food_sighting/edit/:food_sighting_id', async(req,res)=>{
     let foodSightingId = req.params.food_sighting_id;
     let response = await axios.get(BASE_API_URL + 'sighting/' + foodSightingId);
     let foodSighting = response.data;
@@ -50,7 +50,7 @@ app.get('/food_sightings/edit/:food_sighting_id', async(req,res)=>{
     })
 })
 
-app.post('/food_sightings/edit/:food_sighting_id', async(req,res)=>{
+app.post('/food_sighting/edit/:food_sighting_id', async(req,res)=>{
     let description = req.body.description;
     let food = req.body.food.split(',');
     let datetime = req.body.datetime;
@@ -65,6 +65,23 @@ app.post('/food_sightings/edit/:food_sighting_id', async(req,res)=>{
     let url = BASE_API_URL + 'sighting/' + sightingId;
     await axios.put(url, payload);
 
+    res.redirect('/')
+})
+
+app.get('/food_sighting/delete/:food_sighting_id', async(req,res)=>{
+    let foodSightingId = req.params.food_sighting_id;
+    let response = await axios.get(BASE_API_URL + 'sighting/' + foodSightingId);
+    let foodSighting = response.data;
+    console.log(response.data)
+
+    res.render('confirm_delete', {
+        'description': foodSighting
+    })
+})
+
+app.post('/food_sighting/delete/:food_sighting_id', async(req,res)=>{
+    let foodSightingId = req.params.food_sighting_id;
+    await axios.delete(BASE_API_URL + 'sighting/' + foodSightingId);
     res.redirect('/')
 })
 
