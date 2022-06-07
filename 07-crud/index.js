@@ -75,7 +75,7 @@ app.get('/food_sighting/delete/:food_sighting_id', async(req,res)=>{
     console.log(response.data)
 
     res.render('confirm_delete', {
-        'description': foodSighting
+        'food': foodSighting
     })
 })
 
