@@ -19,6 +19,7 @@ const BASE_API_URL = 'https://ckx-movies-api.herokuapp.com/';
 // routes
 app.get('/', async (req, res)=>{
     let response = await axios.get(BASE_API_URL + 'movies');
+    console.log(response.data);
     res.render('movies.hbs', {
         'movies': response.data
     })
@@ -61,6 +62,21 @@ app.post('/edit/movie/:movie_id', async(req, res)=>{
     await axios.patch(url, payload);
 
     res.redirect('/')
+})
+
+app.get('/delete/movie/:movie_id', async(req,res)=>{
+    let response = await axios.get(BASE_API_URL + 'movie/' + req.params.movie_id);
+    let movie = response.data;
+    console.log(response.data);
+
+    res.render('delete_movie.hbs',{
+        'movie': movie
+    })
+})
+
+app.post('/delete/movie/:movie_id', async(req,res)=>{
+    await axios.delete(BASE_API_URL + 'movie/' + req.params.movie_id);
+    res.redirect('/');
 })
 
 

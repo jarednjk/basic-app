@@ -14,6 +14,10 @@
     <tr>
         <td>{{this.title}}</td>
         <td>{{this.plot}}</td>
+        <td>
+            <a href = "/edit/movie/{{this.id}}" class="btn btn-primary btn-sm">Edit</a>
+            <a href = "/delete/movie/{{this.id}}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
     </tr>
     {{/each}}
 
