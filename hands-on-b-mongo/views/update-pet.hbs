@@ -1,0 +1,51 @@
+{{#extends 'base'}}
+
+{{#block 'content'}}
+
+<form method="POST">
+    <div>
+        <label>Pet Name:</label>
+        <input type="text" class="form-control" name="petName" value="{{petRecord.name}}">
+    </div>
+    <div>
+        <label>Breed:</label>
+        <input type="text" class="form-control" name="breed" value="{{petRecord.breed}}">
+    </div>
+    <div>
+        <label>Description:</label>
+        <input type="text" class="form-control" name="description" value="{{petRecord.description}}">
+    </div>
+    <div>
+        <label>Age:</label>
+        <input type="text" class="form-control" name="age" value="{{petRecord.age}}">
+    </div>
+    <div>
+        <label>Problems:</label>
+        <input type="text" class="form-control" name="problems" value="{{petRecord.problems}}">
+    </div>
+    <div>
+        <label>HDB approved</label>
+        <input type="radio" name="hdbApproved" class="form-check-input" value="true" {{#eq petRecord.hdbApproved true}}checked{{/eq}}>
+        <label class="form-check-label">True</label>
+        <input type="radio" name="hdbApproved" class="form-check-input" value="false" {{#eq petRecord.hdbApproved false}}checked{{/eq}}>
+        <label class="form-check-label">False</label>
+    </div>
+    <div>
+        <label>Tags:</label>
+        <input name="tags" type="checkbox" class="form-check-input" value="house-broken" {{#inArray petRecord.tags "house-broken"}}checked{{/inArray}}>
+        <label class="form-check-label">House broken</label>
+        <input name="tags" type="checkbox" class="form-check-input" value="vaccinated" {{#inArray petRecord.tags "vaccinated"}}checked{{/inArray}}>
+        <label class="form-check-label">Vaccinated</label>
+        <input name="tags" type="checkbox" class="form-check-input" value="chipped" {{#inArray petRecord.tags "chipped"}}checked{{/inArray}}>
+        <label class="form-check-label">Chipped</label>
+        <input name="tags" type="checkbox" class="form-check-input" value="fixed" {{#inArray petRecord.tags "fixed"}}checked{{/inArray}}>
+        <label class="form-check-label">Fixed</label>
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary mt-3" />
+    </div>
+</form>
+
+{{/block}}
+
+{{/extends}}

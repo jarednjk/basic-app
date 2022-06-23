@@ -1,0 +1,39 @@
+
+{{#extends 'base'}}
+
+{{#block "content"}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Description</th>
+            <th>Age</th>
+            <th>Problems</th>
+            <th>Tags</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each allPets}}
+        <tr>
+            <td>{{this._id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.breed}}</td>
+            <td>{{this.description}}</td>
+            <td>{{this.age}}</td>
+            <td>{{this.hdbApproved}}</td>
+            <td>{{this.tags}}</td>
+            <td>
+                <a href="/update/{{this._id}}" class="btn btn-primary btn-sm">Update</a>
+                <a href="/delete/{{this._id}}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{/block}}
+
+{{/extends}}
